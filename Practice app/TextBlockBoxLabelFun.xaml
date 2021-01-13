@@ -1,0 +1,442 @@
+﻿<Page x:Class="Practice_app.TextBlockBoxLabelFun"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:uc="clr-namespace:Practice_app"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Practice_app"
+      mc:Ignorable="d" 
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      Name="wnd"
+      d:DesignHeight="450" d:DesignWidth="600" Background="Aqua"
+      Title="TextBlockBoxLabelFun">
+
+    <Page.Resources>
+        <sys:String x:Key="Rstr">This is a page wide resource string</sys:String>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <x:Array x:Key="ComboBoxItems" Type="sys:String">
+            <sys:String>Yella </sys:String>
+            <sys:String>Rudd</sys:String>
+            <sys:String>Perpal</sys:String>
+        </x:Array>
+
+    </Page.Resources>
+
+    <Grid>
+        <TabControl>
+            <TabItem Header="Labels/TBox">
+                <StackPanel Margin="10">
+                    <Label Target="nameBox">_name</Label>
+                    <TextBox x:Name="nameBox"/>
+
+                    <Label Target="{Binding ElementName=ageBox}">a_ge</Label>
+                    <TextBox x:Name="ageBox" HorizontalAlignment="Left" Width="30" />
+
+                    <Label Target="{Binding ElementName=toAnalyse}">Te_xt to analyse</Label>
+                    <TextBox x:Name="toAnalyse" TextWrapping="Wrap" SelectionChanged="toAnalyse_SelectionChanged" AcceptsReturn="True" SpellCheck.IsEnabled="True"></TextBox>
+
+                    <TextBox x:Name="txtStatus" AcceptsReturn="True" IsReadOnly="True"/>
+
+                    <Button Click="Button_Click_1">Kill WindowsExplorer</Button>
+                    
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Buttons">
+                <StackPanel Orientation="Vertical">
+                    <Button Padding="5" Content="Hello World" Click="Button_Click" />
+
+                    <Button Width="100">
+                        <StackPanel Orientation="Horizontal">
+                        <Image Source="sillybutton.png" />
+                            <TextBlock >Big Red</TextBlock>
+                        </StackPanel>
+                            
+                    </Button>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Resource Practice">
+                <StackPanel>
+                    <Label Content="{StaticResource Rstr}"/>
+                    <ComboBox ItemsSource="{StaticResource ComboBoxItems}"/>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Checkbox">
+                <StackPanel Margin="10">
+                    <Label FontFamily="Bodoni MT" FontSize="15" >Application Options</Label>
+                    <CheckBox IsChecked="True" ToolTip="Ridin' with Biden">Biden</CheckBox>
+                    <CheckBox IsChecked="{x:Null}" ToolTip="Yuge!">Trump</CheckBox>
+                    <CheckBox IsChecked="False" ToolTip="Not a sociopath">West</CheckBox>
+                    <Line/>
+                    <Label FontFamily="Comic Sans MS" FontSize="30" FontWeight="ExtraLight">What are you?</Label>
+                    <RadioButton GroupName="Uhuman">Human</RadioButton>
+                    <RadioButton GroupName="Uhuman">NotHuman</RadioButton>
+
+                    <Label>Pics</Label>
+                    <RadioButton Name="Fill" />
+                    <RadioButton x:Name="Squash" />
+
+
+
+
+                    <RadioButton>
+                        <StackPanel>
+                            <Image Source="Sillybutton.png" MaxHeight="40"></Image>
+                        </StackPanel></RadioButton>
+                    <RadioButton>
+                        <TextBlock><Span FontSize="30">X</Span>tr<Span FontSize="30">e</Span>e<Span Foreground="Purple" FontWeight="ExtraBold">m</Span> Kool Text</TextBlock>
+                    </RadioButton>
+                    <Label >Do you prefer cats or dogs?</Label>
+                    <RadioButton GroupName="catdog" Content="dog"/>
+                    <RadioButton GroupName="catdog" Content="cat"/>
+
+
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="get img">
+                <StackPanel>
+                    <WrapPanel Margin="10" HorizontalAlignment="Center">
+                        <Button Name="btnLoadFromFile" Margin="0,0,20,0" Click="BtnLoadFromFile_Click">Load from File...</Button>
+                        <Button Name="btnLoadFromResource" Click="BtnLoadFromResource_Click">Load from Resource</Button>
+                    </WrapPanel>
+                    <Image Name="imgDynamic" Margin="10" Stretch="Uniform" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="MegaTTip">
+                <DockPanel>
+                    <ToolBar DockPanel.Dock="Top">
+                        <Button ToolTip="Create a new file">
+                            <Button.Content>
+                                <Image Source="/WpfTutorialSamples;component/Images/page_white.png" Width="16" Height="16" />
+                            </Button.Content>
+                        </Button>
+                        <Button ToolTipService.HasDropShadow="True">
+                            <Button.Content>
+                                <Image Source="/WpfTutorialSamples;component/Images/folder.png" Width="16" Height="16" />
+                            </Button.Content>
+                            <Button.ToolTip >
+                                <StackPanel>
+                                    <TextBlock FontWeight="Bold" FontSize="14" Margin="0,0,0,5">Open file</TextBlock>
+                                    <TextBlock>
+                        Search your computer or local network
+                        <LineBreak />
+                        for a file and open it for editing.
+                                    </TextBlock>
+                                    <Border BorderBrush="Silver" BorderThickness="0,1,0,0" Margin="0,8" />
+                                    <WrapPanel>
+                                        <TextBlock FontStyle="Italic">Press F1 for more help</TextBlock>
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Button.ToolTip>
+                        </Button>
+                    </ToolBar>
+
+                    <TextBox>
+                        Editor area...
+                    </TextBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="TabOrder">
+                <StackPanel>
+                    <Label Target="{Binding ElementName=scB}" >Me second</Label>
+                    <TextBox x:Name="scB" TabIndex="2">second</TextBox>                
+                    <Label Target="{Binding ElementName=trB}" >Me third</Label>
+                    <TextBox x:Name="trB" TabIndex="3">third</TextBox>
+
+                    <Label Target="{Binding ElementName=fiB}">Me first</Label>
+                    <TextBox x:Name="fiB" TabIndex="1">First</TextBox>
+
+                    <TextBox IsTabStop="False">Ignore me</TextBox>
+                </StackPanel>
+            </TabItem>
+            <TabItem>
+                <Canvas>
+                    <Ellipse Fill="Beige" Canvas.Left="50" Canvas.Top="50" Width="300" Height="300" />
+                    <Rectangle Panel.ZIndex="2" Fill="LightBlue"  Canvas.Left="50" Canvas.Top="50" Width="75" Height="75"/>
+                    <Rectangle Panel.ZIndex="3" Fill="LightBlue" Canvas.Left="25" Canvas.Top="25" Width="75" Height="75" />
+                   <Rectangle Panel.ZIndex="2" Fill="LightCoral" Canvas.Left="50" Canvas.Top="50" Width="75" Height="75" />
+                    <Rectangle Panel.ZIndex="4" Fill="LightCyan" Canvas.Left="75" Canvas.Top="75" Width="75" Height="75" />
+                </Canvas>                                                               
+                
+            </TabItem>
+
+            <TabItem Header="WrapP">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+              
+                <WrapPanel Grid.Column="0"  Width="300" Height="120" Orientation="Vertical">
+                    <Button>Test Button1</Button>
+                    <Button>Test Button2</Button>
+                    <Button >Test Button3</Button>
+                    <Button Height="40">Test Button4</Button>
+                    <Button>Test Button5</Button>
+                        <Button>Test Button6</Button>
+                    </WrapPanel>
+
+                    <WrapPanel Grid.Column="1" Width="300" Height="120" Orientation="Horizontal">
+                        <Button>Test Button1</Button>
+                        <Button>Test Button2</Button>
+                        <Button >Test Button3</Button>
+                        <Button Height="40">Test Button4</Button>
+                        <Button>Test Button5</Button>
+                        <Button>Test Button6</Button>
+
+                    </WrapPanel>
+                </Grid>
+
+            </TabItem>
+
+            <TabItem Header="StackP">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50" HorizontalAlignment="Left">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50" HorizontalAlignment="Right">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                        <Button  FontSize="50">BWAH</Button>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" >
+                    <Button  FontSize="50" VerticalAlignment="Bottom">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50" VerticalAlignment="Center">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                    <Button  FontSize="50">BWAH</Button>
+                        <Button  FontSize="50">BWAH</Button>
+                    </StackPanel>
+                </Grid>
+                
+            </TabItem>
+
+            <TabItem Header="DockP">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Grid.Column="0">
+                        <Button DockPanel.Dock="Left" ToolTip="It is created first, so it takes precedence over Top">Left</Button>
+                        <Button DockPanel.Dock="Top">Top</Button>
+                        <Button DockPanel.Dock="Right">Right</Button>
+                        <Button DockPanel.Dock="Bottom">Bottom</Button>
+                        <Button>Centre (note how the last one expands)</Button>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1" LastChildFill="False">
+                        <Button DockPanel.Dock="Left">Left</Button>
+                        <Button DockPanel.Dock="Top">Top</Button>
+                        <Button DockPanel.Dock="Right">Right</Button>
+                        <Button DockPanel.Dock="Bottom">Bottom</Button>
+                        <Button>Centre (note how it doesn't fill the space)</Button>
+                    </DockPanel>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Grid">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button>Button 1</Button>
+                    <Button Grid.Column="1">Button 2 with long text</Button>
+                    <Button Grid.Column="2">Button 3</Button>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Grid2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Button Grid.ColumnSpan="2">Button 1</Button>
+                <Button Grid.Column="3">Button 2</Button>
+                <Button Grid.Row="1">Button 3</Button>
+                <Button Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="2">Button 4</Button>
+                <Button Grid.Column="0" Grid.Row="2">Button 5</Button>
+    </Grid>
+    </TabItem>
+            <TabItem Header="GSpliter">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Top</TextBlock>
+                    <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" />
+                    <TextBlock Grid.Row="2" FontSize="55" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap">Bottom</TextBlock>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Contact">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" HorizontalAlignment="Left">_Name:</Label>
+                    <Label Grid.Row="1" HorizontalAlignment="Left">_Email:</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1"></TextBox>
+                    <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+                    <TextBox Grid.Row="2" Grid.ColumnSpan="2" AcceptsReturn="True">Enter comment here</TextBox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Binding">
+                <StackPanel Margin="10">
+                    <TextBox x:Name="txtValue" />
+                    <WrapPanel Margin="0,10">
+                        <TextBlock Text="Value: " FontWeight="Bold" />
+                        <TextBlock Text="{Binding Path=Text, ElementName=txtValue}" />
+                    </WrapPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="DataContext">
+                <StackPanel Margin="15" Background="LightCoral">
+                    <WrapPanel>
+                        <TextBlock Text="Window Title: " />
+                        <TextBlock Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Width="150" />
+                    </WrapPanel>
+                    <WrapPanel Margin="0,10,0,0">
+                        <TextBlock Text="Window Dimensions: " />
+                        <TextBox Text="{Binding Width}" Width="50" />
+                        <TextBlock Text=" x " />
+                        <TextBox Text="{Binding Height}" Width="50" />
+                        
+                    </WrapPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Oi!!!">
+                <StackPanel Margin="10">
+                    <TextBox Name="quiettext" />
+                    <WrapPanel Margin="0,10">
+                        <TextBlock Text="Value: " FontWeight="Bold" />
+                        <TextBlock x:Name="lblValue" />
+                    </WrapPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="DC triggers">
+                <StackPanel Margin="15" Background="BlanchedAlmond">
+                    <WrapPanel>
+                        <TextBlock Text="Window title: " />
+                        <TextBox x:Name="txtWindowTitle" Text="{Binding Title, UpdateSourceTrigger=Explicit}" Width="150" />
+                        <Button x:Name="btnUpdateSource" Click="btnUpdateSource_Click" Margin="5,0" Padding="5,0">*</Button>
+                    </WrapPanel>
+
+                    <WrapPanel Margin="0,10,0,0">
+                        <TextBlock Text="Window Dimension: " />
+                        <TextBox Text="{Binding Width, UpdateSourceTrigger=LostFocus}" Width="50" />
+                        <TextBlock Text=" X " />
+                        <TextBox Text="{Binding Height, UpdateSourceTrigger=PropertyChanged}" Width="50" />
+                    </WrapPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Changes">
+                <DockPanel Margin="10">
+                    <StackPanel DockPanel.Dock="Right" Margin="10,0,0,0">
+                        <Button Name="btnAddUser" Click="btnAddUser_Click">Add user</Button>
+                        <Button Name="btnChangeUser" Click="btnChangeUser_Click" Margin="0,5">Change user</Button>
+                        <Button Name="btnDeleteUser" Click="btnDeleteUser_Click">Delete user</Button>
+                    </StackPanel>
+                    <ListBox Name="lbUsers" DisplayMemberPath="Name"></ListBox>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="ImageFill">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold">Uniform</Label>
+                    <Label Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold">UniformToFill</Label>
+                    <Label Grid.Column="2" HorizontalAlignment="Center" FontWeight="Bold">Fill</Label>
+                    <Label Grid.Column="3" HorizontalAlignment="Center" FontWeight="Bold">None</Label>
+                    <Image Source="C:\Users\Laptop\Pictures\oxford.jpg" Stretch="Uniform" Grid.Column="0" Grid.Row="1" Margin="5" />
+                    <Image Source="C:\Users\Laptop\Pictures\oxford.jpg" Stretch="UniformToFill" Grid.Column="1" Grid.Row="1" Margin="5" />
+                    <Image Source="C:\Users\Laptop\Pictures\oxford.jpg" Stretch="Fill" Grid.Column="2" Grid.Row="1" Margin="5" />
+                    <Image Source="C:\Users\Laptop\Pictures\oxford.jpg" Stretch="None" Grid.Column="3" Grid.Row="1" Margin="5" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="UserCon">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <uc:LimitedInputSample Title="Enter Title" MaxLength="30" Height="50"/>
+                    <uc:LimitedInputSample Title="Enter Description:" MaxLength="140" Grid.Row="1" Background="AliceBlue" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="StrFormat">
+                <StackPanel Margin="10">
+                    <TextBlock Text="{Binding ElementName=wnd, Path=ActualWidth, StringFormat=Window width: {0:#,#.0}}" />
+                    <TextBlock Text="{Binding ElementName=wnd, Path=ActualWidth, StringFormat={}{0:#,#.0}}"/>
+                    <TextBlock Text="{Binding ElementName=wnd, Path=ActualHeight, StringFormat= Window height: {0:C}}" />
+                    <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat=Date: {0:dddd, MMMM, dd}}"/>
+                    <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat=Time: {0:HH:mm}}" />
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="CultureDate">
+                <StackPanel Margin="10">
+                    <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, ConverterCulture='de-De', StringFormat=German Date: {0:D}}"/>
+                    <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, ConverterCulture='en-US', StringFormat=Burger date: {0:D}}"/>
+                    <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, ConverterCulture='ja-JP', StringFormat=日本日期: {0:D}}" />
+                    <TextBlock Text="{Binding Source={x:Static sys:DateTime.Now}, ConverterCulture='ko-KO', StringFormat={}{0:D}}"/>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+</Page>
